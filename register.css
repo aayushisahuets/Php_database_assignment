@@ -1,0 +1,28 @@
+form{
+	background-color: #266c7b;
+}
+h2{
+font-family: italic !important;
+}
+/*label{*/
+	/*font-size: 26px;*/
+    /*font-family: Times New Roman;*/
+    /*margin-right: 438px;*/
+
+/*}*/
+/*input[type=text]{
+	margin-left: 68px;
+}*/
+input[type=submit]{
+	/*margin-left: 450px;*/
+	font-size: 19px;
+    /*margin-left: 578px;*/
+    padding: 8px;
+    border-radius: 14px;
+    width: 100px;
+    color: green;
+}
+.error-msg{
+    color: whitesmoke;
+    font-size: 12px;
+}
