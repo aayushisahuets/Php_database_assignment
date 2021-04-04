@@ -1,4 +1,3 @@
-
    // Wait for the DOM to be ready
 jQuery(document).ready(function() {
 // jQuery(function() {
@@ -13,7 +12,7 @@ jQuery(document).ready(function() {
       // of an input field. Validation rules are defined
       // on the right side
           fname: "required",
-          uname: "required",
+          uname: "required"s,
           pwd: {
             required: true,
             minlength: 6

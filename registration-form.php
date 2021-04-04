@@ -1,12 +1,3 @@
-<?php
-	//include 'database_connection.php';
-// Handle AJAX request (start)
-// if( isset($_POST['ajax']) && isset($_POST['fname']) ){
-//  echo $_POST['fname'];
-//  exit;
-// }
-// Handle AJAX request (end)
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +17,10 @@
 			<h2 class="pt-4">REGISTRATION FORM</h2>
 			<hr class="bg-light">
 
-			<input type="text" name="search" id="search" placeholder="Search Name">
-			<input type="button" value="Search" id="search_value"><br>
+			<!-- <input type="text" name="search" id="search" placeholder="Search Name"> -->
+			<!-- <input type="button" value="Search" id="search_value"><br> -->
+			<button id="showData">Show User Data</button><br>
+
 
 			<label for="fname"><b>Name</b></label>
 			<i class="fas fa-user-circle"></i>
@@ -61,46 +54,12 @@
 		</form>
  	</div>
 
- 	<table class="table table-striped table-hover">
-        <thead>
-            <tr>
-				<th>S.NO.</th>
-                <th>NAME</th>
-                <th>USERNAME</th>
-				<th>EMAIL</th>
-            </tr>
-        </thead>
-
-		<tbody>
-            
-			<?php
-				include 'database_connection.php';
-			
-			$sql = "SELECT * FROM employee_data";
-  			$result = $conn->query($sql);
-        	if (mysqli_num_rows($result) > 0) {
-				$i=1;
-
-		while($row = mysqli_fetch_assoc($result)) {
-
-	?>
-        		<tr id="<?php echo $row["id"]; ?>">
-				<td><?php echo $i; ?></td>
-				<td><?php echo $row["fname"]; ?></td>
-				<td><?php echo $row["uname"]; ?></td>
-				<td><?php echo $row["email"]; ?></td>
-			</tr>
-			<?php
-				$i++;
-				}
-			}
-			?>
-
-		</tbody>
-	</table>
+ 	<div id="table-container"></div>
+ 	
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="form-validation.js"></script> 
+	<!-- <script type="text/javascript" src="form-validation.js"></script>  -->
+	<script type="text/javascript" src="ajax-script.js"></script> 
+
  </body>
 </html>
