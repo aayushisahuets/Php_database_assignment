@@ -22,7 +22,7 @@ jQuery(document).ready(function() {
           "uname": "Please enter username",
           "pwd": {
             required: "Please provide a password",
-            minlength: "Your password must be at least 5 characters long"
+            minlength: "Your password must be at least 6 characters long"
           },
           "email": "Please enter a valid email address"
     }

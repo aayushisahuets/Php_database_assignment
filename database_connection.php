@@ -6,40 +6,65 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-    if (isset($_POST['submit'])) {
-        $fname =  $_POST['fname'];
-        $uname = $_POST['uname'];
-        $email =  $_POST['email'];
+
+    if ( !isset($_REQUEST['action']) ) {
+        die("No operation specified");
     }
-    // Performing insert query execution
-    $sql = "INSERT INTO employee_data  VALUES ('$fname','$uname','$email')";
 
-     if(mysqli_query($conn, $sql)){
-         echo "<h3>data stored in a database successfully.</h3>";
-      } 
-     else{
-         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-     }
+    switch ($_REQUEST['action']) {
+        case 'store_employee':
+            if (isset($_POST['submit'])) {
+                $fname =  $_POST['fname'];
+                $uname = $_POST['uname'];
+                $email =  $_POST['email'];
+            // Performing insert query execution
+                $sql = "INSERT INTO employee_data  VALUES ('$fname','$uname','$email')";
 
-    //performing select query execution
-    $result = mysqli_query($conn,"SELECT * FROM employee_data");
-    echo "<table border='1' >
-            <tr>
-            <td align=center><b>Name</b></td>
-            <td align=center><b>Username</b></td>
-            <td align=center><b>Email</b></td>";
-     while($row = mysqli_fetch_array($result))
-    {   
-        // $sno=1;
-    echo "<tr>";
-        echo "<td align=center>$row[0]</td>";
-        echo "<td align=center>$row[1]</td>";
-        echo "<td align=center>$row[2]</td>";
+                 if(mysqli_query($conn, $sql)){
+                    header("location: /assignment/Php_database_assignment-main/registration-form.php");
+                     // echo "<h3>data stored in a database successfully.</h3>";
+                  } 
+                 else{
+                     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                 }
+            }
+          
+        break;
+
+        case 'fetch_data':
+
+            if ( isset($_REQUEST['action']) && $_REQUEST['action'] == 'fetch_data' ) {
+            //performing select query execution
+                $result = mysqli_query( $conn, "SELECT * FROM employee_data" );
+                $empTable =  "<table border='1' class='table table-striped'>
+                    <tr>
+                    <th align=center width=20%><b>Name</b></th>
+                    <th align=center width=20%><b>Username</b></th>
+                    <th align=center width=30%><b>Email</b></th>";
+            while($row = mysqli_fetch_array($result))
+            {   
+                // $sno=1;
+                $empTable .= "<tr>";
+                $empTable .= "<th align=center>$row[0]</th>";
+                $empTable .= "<th align=center>$row[1]</th>";
+                $empTable .= "<th align=center>$row[2]</th>";
+                $empTable .= "</tr>";
+                // $sno++;
+            }
+            $empTable .= "</table>";
+
+            $response = array("success" => 1, "empTable" => $empTable);
+
+            echo json_encode($response);        
+            }
+        break;
         
-    echo "</tr>";
-        // $sno++;
+        default:
+            echo "No action performed :";
+            break;
     }
-    echo "</table>";
+
+
 
     mysqli_close($conn);
  ?>
