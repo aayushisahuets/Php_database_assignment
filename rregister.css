@@ -1,0 +1,21 @@
+form{
+	background-color: #266c7b;
+}
+h2{
+font-family: italic !important;
+}
+
+.butoons{
+    font-size: 15px !important;
+    padding: 8px;
+    border-radius: 60px;
+    width: 100px;
+    color: green;
+}
+
+.error{
+    color: #FF0001
+    /*color: whitesmoke;*/
+    margin-left:25px;
+    font-size: 12px;
+}
